@@ -1,0 +1,21 @@
+* {
+    box-sizing: border-box;
+
+}
+
+.cell {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    font-size: 1.5em;
+    background-color: gray;
+}
+
+table, td, th {
+    border: 1px solid;
+    border-collapse: collapse;
+}
+
+table{
+    margin: auto;
+}

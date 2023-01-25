@@ -2,12 +2,16 @@
     box-sizing: border-box;
 
 }
+body{
+    background-color: #8EA7E9;
+    text-align: center;
+}
 
 .cell {
-    width: 40px;
-    height: 40px;
+    width: 20px;
+    height: 20px;
     text-align: center;
-    font-size: 1.5em;
+    font-size: 0.75em;
     background-color: gray;
 }
 
@@ -18,4 +22,11 @@ table, td, th {
 
 table{
     margin: auto;
+}
+
+.reset {
+    background-color: #8EA7E9;
+    border: none;
+    font-size: 35px;
+    cursor: pointer;
 }

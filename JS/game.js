@@ -147,6 +147,8 @@ function onCellClicked(elCell, i, j) {
 // marks cell and apply the game rules regarding marked cells
 function onCellMarked(elCell, i, j, e) {
   e.preventDefault();
+  if (!gGame.isOn) return;
+
   if (!gBoard[i][j].isShown) {
     gBoard[i][j].isMarked = !gBoard[i][j].isMarked;
     elCell.innerText = gBoard[i][j].isMarked ? FLAG : '';

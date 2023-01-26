@@ -130,17 +130,15 @@ function expandShown(i, j) {
 function onCellClicked(elCell, i, j) {
   if (!gGame.isOn || gBoard[i][j].isMarked || gBoard[i][j].isShown) return;
 
-  if (gIsFirstClick) {
-    setMinesNegsCount();
-
-    stopWatch();
-    gIsFirstClick = false;
-  }
-
   var currCell = gBoard[i][j];
   if (currCell.isMine) {
     handleMineClick(i, j);
     return;
+  }
+  if (gIsFirstClick) {
+    setMinesNegsCount();
+    stopWatch();
+    gIsFirstClick = false;
   }
   expandShown(i, j);
   checkGameOver();

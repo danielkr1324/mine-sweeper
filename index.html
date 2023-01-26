@@ -5,18 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mine Sweeper</title>
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
     <link rel="stylesheet" href="CSS/sytle.css">
 </head>
 <body onload="init()">
 
     <div class="game-info">
-        <button onclick="init()" class="reset"></button>
-        <h2 class="stop-watch"></h2>
-        <div class="board-container">
+        <p class="stop-watch">TIME:<span> </span></p>
+        <button class="btn btn-beginer" onclick="onDifficultySet(4, 2)">4x4 (beginer)</button>
+        <button class="btn btn-medium" onclick="onDifficultySet(8, 14)">8x8 (medium)</button>
+        <button class="btn btn-expert" onclick="onDifficultySet(12, 32)">12x12 (expert)</button><br/>
+        <button onclick="init()" class="reset"></button> 
+        <p class="lives"></p>
 
-        </div>
     </div>
+    <div class="board-container">
+
+    </div>
+    <footer class="about">
     
+        <p>    made by Daniel Krot</p>
+
+    </footer>
 
     <script src="JS/utils.js"></script>
     <script src="JS/game.js"></script>

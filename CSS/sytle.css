@@ -2,17 +2,27 @@
     box-sizing: border-box;
 
 }
+
+
 body{
-    background-color: #8EA7E9;
+    font-family: 'IBM Plex Mono', monospace;
+    background-color: #282A3A;
     text-align: center;
+    color: #333456;
 }
 
 .cell {
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     text-align: center;
-    font-size: 0.75em;
-    background-color: gray;
+    font-size: 1em;
+    background-color: #726A95;
+    border-radius: 2px;
+    transition: 0.2s;
+}
+
+.cell:hover {
+    background-color: #3E2C41;
 }
 
 table, td, th {
@@ -24,9 +34,58 @@ table{
     margin: auto;
 }
 
+.stop-watch {
+    font-family: 'Orbitron', sans-serif;
+    color: crimson;
+    letter-spacing: 7px;
+}
+
+.btn {
+    font-family: 'IBM Plex Mono', monospace;
+    color: #e199f9;
+    background-color: #205295;
+    border: none;
+    border-radius: 5px;
+    margin: 15px;
+    padding: 7px 12px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.btn:hover {
+    background-color: #2C74B3;
+}
+
+.btn-beginer:hover{
+    background-color: #03C988;
+    color: #3E2C41;
+}
+
+
+.btn-expert:hover {
+    background-color: crimson;
+    color: antiquewhite;
+
+}
+
+.board-container {
+ display: inline-block;
+ box-shadow: 3px 1px 66px -3px rgba(191,181,181,0.62);
+-webkit-box-shadow: 3px 1px 66px -3px rgba(191,181,181,0.62);
+-moz-box-shadow: 3px 1px 66px -3px rgba(191,181,181,0.62);
+}
+
+.lives {
+    font-size: 25px;
+}
+
 .reset {
-    background-color: #8EA7E9;
+    background-color: #282A3A;
     border: none;
     font-size: 35px;
     cursor: pointer;
+}
+
+.about{
+    color: antiquewhite;
+    position: relative;
 }

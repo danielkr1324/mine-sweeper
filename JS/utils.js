@@ -23,7 +23,7 @@ function renderBoard(mat) {
 function renderCell(location, value) {
   const elCell = document.querySelector(`.cell-${location.i}-${location.j}`);
   elCell.innerHTML = value;
-  elCell.style.backgroundColor = value === MINE ? '#F55050' : '#EEEEEE';
+  elCell.style.backgroundColor = value === MINE ? '#F55050' : '#DBCBBD';
 }
 
 function getRandomIntInclusive(min, max) {

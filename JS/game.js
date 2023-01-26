@@ -190,6 +190,7 @@ function checkGameOver() {
 }
 
 function handleMineClick(i, j) {
+  playSound('pop');
   renderCell({ i, j }, MINE);
   gBoard[i][j].isShown = true;
   gGame.showCount++;
@@ -208,11 +209,14 @@ function handleMineClick(i, j) {
 }
 
 function gameOver() {
-  clearInterval(gTimerInterval);
-  gGame.isOn = false;
-  exposeMines();
+  var sound = gGame.isWin ? 'win' : 'lose';
   var gameOverEmj = gGame.isWin ? WIN_EMJ : DEAD_EMJ;
   var elEmj = document.querySelector('.reset');
+
+  gGame.isOn = false;
+  clearInterval(gTimerInterval);
+  exposeMines();
+  playSound(sound);
   elEmj.innerText = gameOverEmj;
 }
 

@@ -43,3 +43,8 @@ function getFreePos(board) {
   var randIdx = getRandomIntInclusive(0, emptyPos.length - 1);
   return emptyPos[randIdx];
 }
+
+function playSound(audio) {
+  const sound = new Audio(`sounds/${audio}.mp3`);
+  sound.play();
+}

@@ -34,7 +34,7 @@ function getFreePos(board) {
   var emptyPos = [];
   for (var i = 0; i < board.length; i++) {
     for (var j = 0; j < board[0].length; j++) {
-      if (!board[i][j].isMine && !board[i][j].minesAroundCount) {
+      if (!board[i][j].isMine && !board[i][j].isShown) {
         emptyPos.push({ i, j });
       }
     }

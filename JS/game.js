@@ -38,7 +38,6 @@ function init(size = gSize, numOfMines = gMinesNum) {
 
   gBoard = createBoard(size);
   renderBoard(gBoard);
-  setMinesNegsCount();
 
   var elEmj = document.querySelector('.reset');
   var elStopWatch = document.querySelector('.stop-watch span');
@@ -84,6 +83,7 @@ function setMinesNegsCount() {
   renderBoard(gBoard);
 }
 
+//general function that recives indexes and function and operates on neighbors of specific cell
 function negsOperations(idxI, idxJ, func) {
   for (var i = idxI - 1; i <= idxI + 1; i++) {
     if (i < 0 || i >= gBoard.length) continue;
@@ -103,14 +103,7 @@ function isNegMine(i, j) {
   if (gBoard[i][j].isMine) return true;
 }
 
-// function expandShown(i, j) {
-//   var curCell = gBoard[i][j];
-//   var celNumVal = curCell.minesAroundCount ? curCell.minesAroundCount : '';
-//   if (!curCell.isMine) {
-//     renderCell({ i, j }, celNumVal);
-//     curCell.isShown = true;
-//   }
-// }
+//recursive fuction that expose content of one cell or more
 function expandShown(i, j) {
   if (gBoard[i][j].isMarked) return;
 
@@ -133,10 +126,13 @@ function expandShown(i, j) {
   if (j < gBoard[0].length - 1) expandShown(i, j + 1);
 }
 
+// handling click according to certein conditions
 function onCellClicked(elCell, i, j) {
   if (!gGame.isOn || gBoard[i][j].isMarked || gBoard[i][j].isShown) return;
 
   if (gIsFirstClick) {
+    setMinesNegsCount();
+
     stopWatch();
     gIsFirstClick = false;
   }
@@ -150,6 +146,7 @@ function onCellClicked(elCell, i, j) {
   checkGameOver();
 }
 
+// marks cell and apply the game rules regarding marked cells
 function onCellMarked(elCell, i, j, e) {
   e.preventDefault();
   if (!gBoard[i][j].isShown) {
@@ -164,6 +161,7 @@ function onCellMarked(elCell, i, j, e) {
   checkGameOver();
 }
 
+//starting a stop watch and render it to the screen
 function stopWatch() {
   var startTime = Date.now();
 
@@ -218,6 +216,7 @@ function gameOver() {
   elEmj.innerText = gameOverEmj;
 }
 
+// expose all mines when the game is done
 function exposeMines() {
   for (var i = 0; i < gBoard.length; i++) {
     for (var j = 0; j < gBoard[0].length; j++) {
@@ -228,6 +227,7 @@ function exposeMines() {
   }
 }
 
+// rendering hearts to the screen
 function renderLives(liveCount) {
   var elLiveCount = document.querySelector('.lives');
   var livesStr = '';

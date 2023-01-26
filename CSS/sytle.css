@@ -9,13 +9,16 @@ body{
     background-color: #282A3A;
     text-align: center;
     color: #333456;
+    font-size: 20px;
+    position: relative;
+    height: 100vh;
 }
 
 .cell {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     text-align: center;
-    font-size: 1em;
+    font-size: 1.25em;
     background-color: #726A95;
     border-radius: 2px;
     transition: 0.2s;
@@ -36,7 +39,7 @@ table{
 
 .stop-watch {
     font-family: 'Orbitron', sans-serif;
-    color: crimson;
+    color: #FF0000;
     letter-spacing: 7px;
 }
 
@@ -50,6 +53,8 @@ table{
     padding: 7px 12px;
     cursor: pointer;
     transition: 0.3s;
+    font-size: 20px;
+
 }
 .btn:hover {
     background-color: #2C74B3;
@@ -68,6 +73,7 @@ table{
 }
 
 .board-container {
+
  display: inline-block;
  box-shadow: 3px 1px 66px -3px rgba(191,181,181,0.62);
 -webkit-box-shadow: 3px 1px 66px -3px rgba(191,181,181,0.62);
@@ -87,5 +93,7 @@ table{
 
 .about{
     color: antiquewhite;
-    position: relative;
+    position: absolute;
+    bottom: 5%;
+    margin: 10px;
 }

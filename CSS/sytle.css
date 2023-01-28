@@ -24,9 +24,10 @@ body{
     transition: 0.2s;
 }
 
-.cell:hover {
+/* .cell:hover {
     background-color: #3E2C41;
-}
+} */
+
 
 table, td, th {
     border: 1px solid;
@@ -96,4 +97,14 @@ table{
     position: absolute;
     bottom: 5%;
     margin: 10px;
+}
+
+.hint-bulbs {
+    background-color: #ebf656;
+    display: inline-block;
+    border-radius: 7px;
+}
+
+.bulb-img {
+    height: 50px;
 }

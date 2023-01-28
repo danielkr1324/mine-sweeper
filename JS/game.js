@@ -7,6 +7,8 @@ const WIN_EMJ = '🤩';
 const HAPPY_EMJ = '😀';
 const DEAD_EMJ = '😵';
 const LIFE = '💖';
+const HINT = 'images/hint.png';
+const USED_HINT = 'images/used-hint.png';
 
 //global variables
 var gBoard;
@@ -16,11 +18,15 @@ var gIsFirstClick;
 var gTimerInterval;
 var gSize = 4;
 var gMinesNum = 2;
+var gIsHintClicked;
+var gLastClickedCell;
 
 function init(size = gSize, numOfMines = gMinesNum) {
   clearInterval(gTimerInterval);
 
   gIsFirstClick = true;
+  gLastClickedCell = null;
+  gIsHintClicked = false;
 
   gLevel = {
     size: size,
@@ -34,6 +40,7 @@ function init(size = gSize, numOfMines = gMinesNum) {
     secPassed: 0,
     isWin: false,
     liveCount: 3,
+    hintCount: 3,
   };
 
   gBoard = createBoard(size);
@@ -41,11 +48,14 @@ function init(size = gSize, numOfMines = gMinesNum) {
 
   var elEmj = document.querySelector('.reset');
   var elStopWatch = document.querySelector('.stop-watch span');
+  var elHint = document.querySelector('.hint');
 
   elEmj.innerText = HAPPY_EMJ;
   elStopWatch.innerText = '0.0';
+  elHint.innerText = 'use hint';
 
   renderLives(gGame.liveCount);
+  renderHintBulbs();
 }
 
 function onDifficultySet(size, minesNum) {
@@ -64,6 +74,7 @@ function createBoard(size) {
         isShown: false,
         isMine: false,
         isMarked: false,
+        isHint: false,
       };
     }
   }
@@ -131,6 +142,20 @@ function onCellClicked(elCell, i, j) {
   if (!gGame.isOn || gBoard[i][j].isMarked || gBoard[i][j].isShown) return;
 
   var currCell = gBoard[i][j];
+
+  if (gIsHintClicked) {
+    renderHintBulbs();
+    showCell(i, j);
+    negsOperations(i, j, showCell);
+
+    setTimeout(() => {
+      gIsHintClicked = false;
+      hideCell(i, j);
+      negsOperations(i, j, hideCell);
+    }, 1000);
+    return;
+  }
+
   if (currCell.isMine) {
     handleMineClick(i, j);
     return;
@@ -140,14 +165,16 @@ function onCellClicked(elCell, i, j) {
     stopWatch();
     gIsFirstClick = false;
   }
+
   expandShown(i, j);
+
   checkGameOver();
 }
 
 // marks cell and apply the game rules regarding marked cells
 function onCellMarked(elCell, i, j, e) {
   e.preventDefault();
-  if (!gGame.isOn) return;
+  if (!gGame.isOn || gIsFirstClick) return;
 
   if (!gBoard[i][j].isShown) {
     gBoard[i][j].isMarked = !gBoard[i][j].isMarked;
@@ -159,6 +186,16 @@ function onCellMarked(elCell, i, j, e) {
     }
   }
   checkGameOver();
+}
+
+function onHintClick(elBtn) {
+  if (gIsFirstClick) return;
+  if (!gGame.hintCount) {
+    elBtn.innerText = 'no more hints';
+    return;
+  }
+  gGame.hintCount--;
+  gIsHintClicked = true;
 }
 
 //starting a stop watch and render it to the screen
@@ -239,4 +276,48 @@ function renderLives(liveCount) {
     livesStr += LIFE;
   }
   elLiveCount.innerText = livesStr;
+}
+
+function renderHintBulbs() {
+  var hintsLeft = gGame.hintCount;
+  var imgHTML = '';
+  for (var i = 0; i < 3; i++) {
+    var bulbImg = i >= hintsLeft ? USED_HINT : HINT;
+    imgHTML += `<img class="bulb-img" src="${bulbImg}" />`;
+  }
+  var elHints = document.querySelector('.hint-bulbs');
+  elHints.innerHTML = imgHTML;
+}
+
+function hideCell(i, j) {
+  if (!gBoard[i][j].isHint) return;
+
+  const elCell = document.querySelector(`.cell-${i}-${j}`);
+  elCell.innerHTML = '';
+  elCell.style.backgroundColor = '#726A95';
+  if (gBoard[i][j].isMarked) elCell.innerText = FLAG;
+  gBoard[i][j].isHint = false;
+  gBoard[i][j].isShown = false;
+  gGame.showCount--;
+  console.log(gGame.showCount);
+}
+
+function showCell(i, j) {
+  if (gBoard[i][j].isShown) return;
+
+  renderCell({ i, j }, identifyCellContent(i, j));
+  gGame.showCount = gBoard[i][j].isShown
+    ? gGame.showCount
+    : gGame.showCount + 1;
+  gBoard[i][j].isShown = true;
+  gBoard[i][j].isHint = gIsHintClicked ? true : false;
+  console.log(gGame.showCount);
+}
+
+function identifyCellContent(i, j) {
+  if (gBoard[i][j].isMine) {
+    return MINE;
+  } else if (gBoard[i][j].minesAroundCount) {
+    return gBoard[i][j].minesAroundCount;
+  } else return '';
 }

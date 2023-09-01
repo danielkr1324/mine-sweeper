@@ -1,41 +1,47 @@
+/* Default styles */
+
 * {
     box-sizing: border-box;
-
 }
 
-
-body{
+body {
     font-family: 'IBM Plex Mono', monospace;
     background-color: #282A3A;
     text-align: center;
     color: #333456;
     font-size: 20px;
     position: relative;
-    height: 100vh;
+    min-height: 100vh; /* Changed height to min-height */
+    margin: 0; /* Remove default margin */
 }
 
 .cell {
-    width: 40px;
-    height: 40px;
+    /* width: 40px;
+    height: 40px; */
     text-align: center;
-    font-size: 1.25em;
+    font-size: 100%;
     background-color: #726A95;
     border-radius: 2px;
     transition: 0.2s;
 }
 
-/* .cell:hover {
-    background-color: #3E2C41;
-} */
-
-
 table, td, th {
     border: 1px solid;
     border-collapse: collapse;
+    border-radius: 2px;
+
 }
 
-table{
+table {
     margin: auto;
+}
+
+.game-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 400px;
 }
 
 .stop-watch {
@@ -55,30 +61,29 @@ table{
     cursor: pointer;
     transition: 0.3s;
     font-size: 20px;
-
 }
+
 .btn:hover {
     background-color: #2C74B3;
 }
 
-.btn-beginer:hover{
+.btn-beginner:hover {
     background-color: #03C988;
     color: #3E2C41;
 }
 
-
 .btn-expert:hover {
     background-color: crimson;
     color: antiquewhite;
-
 }
 
 .board-container {
-
- display: inline-block;
- box-shadow: 3px 1px 66px -3px rgba(191,181,181,0.62);
--webkit-box-shadow: 3px 1px 66px -3px rgba(191,181,181,0.62);
--moz-box-shadow: 3px 1px 66px -3px rgba(191,181,181,0.62);
+    width: 400px;
+    height: 400px;
+    display: inline-block;
+    box-shadow: 3px 1px 66px -3px rgba(191, 181, 181, 0.62);
+    -webkit-box-shadow: 3px 1px 66px -3px rgba(191, 181, 181, 0.62);
+    -moz-box-shadow: 3px 1px 66px -3px rgba(191, 181, 181, 0.62);
 }
 
 .lives {
@@ -92,11 +97,11 @@ table{
     cursor: pointer;
 }
 
-.about{
-    color: antiquewhite;
-    position: absolute;
-    bottom: 5%;
-    margin: 10px;
+.hint-container {
+    display: flex;
+    margin: 10px auto;
+    justify-content: center;
+    align-items: center;
 }
 
 .hint-bulbs {
@@ -107,4 +112,32 @@ table{
 
 .bulb-img {
     height: 50px;
+}
+
+/* Media query for smaller screens */
+
+@media (max-width: 480px) {
+    body {
+        font-size: 16px; /* Adjust font size for smaller screens */
+    }
+
+    .board-container {
+        width: 360px;
+        height: 360px;
+    }
+
+    .cell {
+        width: 30px; /* Adjust cell size for smaller screens */
+        height: 30px;
+        font-size: 1em; /* Adjust font size for cells */
+    }
+
+    .game-info {
+        width: 360px;
+    }
+
+    .btn {
+        font-size: 12px; 
+        margin: 0;/* Adjust font size for buttons */
+    }
 }

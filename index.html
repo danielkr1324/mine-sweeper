@@ -19,25 +19,30 @@
 </head>
 <body onload="init()">
 
-    <div class="game-info">
-        <p class="stop-watch">TIME:<span> </span></p>
+    <div class="game-level">
         <button class="btn btn-beginer" onclick="onDifficultySet(4, 2)">4x4 (beginer)</button>
         <button class="btn btn-medium" onclick="onDifficultySet(8, 14)">8x8 (medium)</button>
         <button class="btn btn-expert" onclick="onDifficultySet(12, 32)">12x12 (expert)</button><br/>
-        <button onclick="init()" class="reset"></button> 
-        <p class="lives"></p>
         
-        <div class="board-container">
+        <div class="game-board">
+            <button onclick="init()" class="reset"></button> 
+            <div class="game-info">
+                <p class="lives"></p>
+                <p class="stop-watch">TIME:<span> </span></p>
+            </div>
+    
+            <div class="board-container">
             
-        </div><br>
-        
-        <div class="hint-bulbs"></div>
-        
+            </div><br>
+        </div>
+
+        <div class="hint-container">
+            <div class="hint-bulbs"></div>
+            <button class="btn hint" onclick="onHintClick(this)"></button><br/>
+        </div>
     </div>
-    <button class="btn hint" onclick="onHintClick(this)"></button><br/>
-    <footer class="about">
-        <p>made by Daniel Krot</p>
-    </footer>
+
+   
 
     <script src="JS/utils.js"></script>
     <script src="JS/game.js"></script>

@@ -10,9 +10,7 @@ body {
     text-align: center;
     color: #333456;
     font-size: 20px;
-    position: relative;
     height: fit-content;
-    overflow-y: hidden;
 
     margin: 0; /* Remove default margin */
 }

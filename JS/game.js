@@ -183,8 +183,8 @@ function onCellClicked(elCell, i, j) {
     gIsFirstClick = false
   }
 
-  expandShown(i, j)
   setCellSize()
+  expandShown(i, j)
 
   checkGameOver()
 }

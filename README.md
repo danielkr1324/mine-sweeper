@@ -1,2 +1,2 @@
 # mine-sweeper
-sprint1 
+Created only with HTML, CSS and vanilla javascript
